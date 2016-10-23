@@ -11,11 +11,11 @@ checking list of redirect with user-agent
 #### PC to SP
 - ``` stack exec checker-exe iPhone sp.txt ```
 - sp.txt [from to]
-  ```
-  http://example.com http://example.com/sp
-  http://sample.jp http://sample.jp/sp
-  ...
-  ```
+```
+http://example.com http://example.com/sp
+http://sample.jp http://sample.jp/sp
+...
+```
 - result
   - success
   ```
@@ -31,9 +31,9 @@ checking list of redirect with user-agent
 #### SP to PC
 - ``` stack exec checker-exe Macintosh pc.txt ```
 - pc.txt [from to]
-  ```
-  http://example.com/sp http://example.com
-  http://sample.jp/sp http://sample.jp
-  ...
-  ```
+```
+http://example.com/sp http://example.com
+http://sample.jp/sp http://sample.jp
+...
+```
 - result: Same as PC to SP
