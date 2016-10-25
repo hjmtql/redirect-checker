@@ -49,7 +49,7 @@ getRedirUrl ua u = do
         Nothing -> return $ Just u
         Just loc -> return . Just $ remSpace loc
   where
-    opts = [CurlFollowLocation True, CurlMaxRedirs 10, CurlNoBody True, CurlUserAgent ua]
+    opts = [CurlFollowLocation True, CurlMaxRedirs 10, CurlNoBody True, CurlTimeout 5, CurlUserAgent ua]
     remSpace = tail
 
 getAttrLocation :: [HeaderInfo] -> Maybe String
