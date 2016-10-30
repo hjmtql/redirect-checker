@@ -30,9 +30,8 @@ isCorrect :: String -> RedUrlPair -> IO (Bool, String)
 isCorrect ua up = do
   u <- getRedirUrl ua uf
   case u of
-    Nothing -> return (False, "Broken link: " `mappend` uf)
+    Nothing -> return (False, "Cannot access: " `mappend` uf)
     Just loc
-      | loc == uf -> return (True, "No redirect: " `mappend` uf)
       | loc == ut -> return (True, "Correct redirect: " `mappend` uf `mappend` " -> " `mappend` loc)
       | otherwise -> return (False, "Incorrect redirect: " `mappend` uf `mappend` " -> " `mappend` loc `mappend` " is not " `mappend` ut)
   where
@@ -49,7 +48,7 @@ getRedirUrl ua u = do
         Nothing -> return $ Just u
         Just loc -> return . Just $ remSpace loc
   where
-    opts = [CurlFollowLocation True, CurlMaxRedirs 10, CurlNoBody True, CurlUserAgent ua]
+    opts = [CurlFollowLocation True, CurlMaxRedirs 10, CurlNoBody True, CurlTimeout 5, CurlUserAgent ua]
     remSpace = tail
 
 getAttrLocation :: [HeaderInfo] -> Maybe String
